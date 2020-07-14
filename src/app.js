@@ -12,12 +12,27 @@ class App extends React.Component {
     super();
     this.state = {
       words: 'Default state',
+      url: 'Input url',
+      method: '',
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMethod = this.handleMethod.bind(this);
     this.handleStateWords = this.handleStateWords.bind(this);
   }
 
   handleStateWords(words) {
     this.setState({ words });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(event.target.value);
+    this.setState({url: event.target.value});
+  }
+
+  handleMethod(method) {
+    console.log(method);
+    this.setState({method});
   }
 
   render() {
@@ -29,8 +44,11 @@ class App extends React.Component {
           words={this.state.words}
           handleState={this.handleStateWords}
         />
-        <h2>Hello World</h2>
-        <Form></Form>
+        
+        <Form
+          handleMethod={this.handleMethod}
+          method={this.state.method}
+        />
         <Footer/>
       </div>
     );
