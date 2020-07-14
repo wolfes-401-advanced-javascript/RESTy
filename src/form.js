@@ -4,16 +4,14 @@ import ReactDOM from 'react-dom';
 import './form.scss';
 
 class Form extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+ 
   render() {
     return (
       <section>
-        <form>
+        <form id="form" onSubmit={this.props.handleSubmit}>
           <label>Enter your URL:</label>
-          <input type="text" id="url" />
-          <button type="submit">Go</button>
+          <input type="text" id="url" value={this.props.value} onChange={this.props.handleChange}></input>
+          <button>Go</button>
           <br></br>
           <section id="methods">
             <ul>
@@ -24,7 +22,7 @@ class Form extends React.Component {
             </ul>
           </section>
           <section>
-            <p>{this.props.method}</p>
+            <p id="update">{this.props.method} {this.props.url}</p>
           </section>
         </form>
         <br></br>

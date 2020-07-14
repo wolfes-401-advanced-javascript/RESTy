@@ -20,8 +20,10 @@ class App extends React.Component {
     this.handleStateWords = this.handleStateWords.bind(this);
   }
 
-  handleStateWords(words) {
-    this.setState({ words });
+  handleStateWords(event) {
+    let url = event.target.value;
+    console.log('url', url);
+    this.setState({ url });
   }
 
   handleSubmit(event) {
@@ -42,12 +44,14 @@ class App extends React.Component {
       <div>
         <Header
           words={this.state.words}
-          handleState={this.handleStateWords}
+          
         />
         
         <Form
           handleMethod={this.handleMethod}
           method={this.state.method}
+          handleChange={this.handleStateWords}
+          url={this.state.url}
         />
         <Footer/>
       </div>
