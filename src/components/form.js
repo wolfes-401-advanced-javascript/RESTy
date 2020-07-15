@@ -15,7 +15,7 @@ class Form extends React.Component {
           <br></br>
           <section id="methods">
             <ul>
-              <li onClick={() => this.props.handleMethod('Get')}>GET</li>
+              <li id="get" onClick={() => this.props.handleMethod('Get')}>GET</li>
               <li onClick={() => this.props.handleMethod('Post')}>POST</li>
               <li onClick={() => this.props.handleMethod('Put')}>PUT</li>
               <li onClick={() => this.props.handleMethod('Delete')}>DELETE</li>
