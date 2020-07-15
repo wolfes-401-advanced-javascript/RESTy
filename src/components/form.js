@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './form.scss';
+import '../scss/form.scss';
 
 class Form extends React.Component {
  
@@ -33,5 +33,4 @@ class Form extends React.Component {
 
 }
 
-ReactDOM.render(<Form />, document.getElementById('root'));
 export default Form;
