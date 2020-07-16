@@ -4,14 +4,14 @@ import React from 'react';
 import '../scss/form.scss';
 
 class Form extends React.Component {
- 
+
   render() {
     return (
       <section>
         <form id="form" onSubmit={this.props.handleSubmit}>
           <label>Enter your URL:</label>
           <input type="text" id="url" value={this.props.value} onChange={this.props.handleChange}></input>
-          <button>Go</button>
+          <button>{this.props.prompt}</button>
           <br></br>
           <section id="methods">
             <ul>

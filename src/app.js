@@ -26,10 +26,19 @@ class App extends React.Component {
     this.setState({ url });
   }
 
-  handleSubmit(event) {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(event.target.value);
-    this.setState({url: event.target.value});
+    let data = await fetch('https://pokeapi.co/api/v2/pokemon');
+    let json = await data.json
+    
+    let count = json.count;
+
+    let pokemon = json.results.reduce((list, pokemon) => {
+      list[pokemon.name] = pokemon.url;
+      return list;
+    }, {});
+
+    this.props.handler(count, pokemon);
   }
 
   handleMethod(method) {
@@ -48,6 +57,7 @@ class App extends React.Component {
         />
         
         <Form
+          onSubmit={this.handleSubmit}
           handleMethod={this.handleMethod}
           method={this.state.method}
           handleChange={this.handleStateWords}
