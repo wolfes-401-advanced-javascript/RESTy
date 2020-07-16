@@ -22,7 +22,7 @@ class Form extends React.Component {
             </ul>
           </section>
           <section>
-            <p id="update">{this.props.method} {this.props.url}</p>
+            <p id="update">{this.props.response} {this.props.url}</p>
           </section>
         </form>
         <br></br>

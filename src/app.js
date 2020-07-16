@@ -5,6 +5,7 @@ import './scss/app.scss';
 import Header from './components/header.js';
 import Footer from './components/footer.js';
 import Form from './components/form.js';
+import List from './components/pokemonList/list.js'
 
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
       words: 'Default state',
       url: 'Input url',
       method: '',
+      response: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMethod = this.handleMethod.bind(this);
@@ -28,18 +30,13 @@ class App extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    let data = await fetch('https://pokeapi.co/api/v2/pokemon');
-    let json = await data.json
+    let data = await fetch(this.state.url);
+    let json = await data.json();
+    console.log(json);
     
-    let count = json.count;
-
-    let pokemon = json.results.reduce((list, pokemon) => {
-      list[pokemon.name] = pokemon.url;
-      return list;
-    }, {});
-
-    this.props.handler(count, pokemon);
-  }
+    this.setState({ response: json });
+     
+    }
 
   handleMethod(method) {
     console.log(method);
@@ -47,8 +44,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-
+    
     return (
       <div>
         <Header
@@ -62,8 +58,14 @@ class App extends React.Component {
           method={this.state.method}
           handleChange={this.handleStateWords}
           url={this.state.url}
+          prompt={'Go!'}
         />
-        <Footer/>
+         <>
+        <List  
+          response={this.state.response}
+        />
+        </>
+        <Footer />
       </div>
     );
   }

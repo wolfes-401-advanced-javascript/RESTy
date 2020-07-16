@@ -1,8 +1,9 @@
 import React from 'react';
 
+
 const List = (props) => {
 
-  if (!Object.keys(props.pokemon).length) {
+  if (!Object.keys(props.response).length) {
 
     return (
       <p>Give me Pokemon!</p>
@@ -12,10 +13,10 @@ const List = (props) => {
     return (
       <div>
         <ul>
-          {Object.keys(props.pokemon).map((pokemon, idx) => {
+          {Object.keys(props.response).map((response, idx) => {
             return (
               <li key={idx}>
-                <a href={props.pokemon[pokemon]}>{pokemon}</a>
+                <a href={props.response[response]}>{response}</a>
               </li>
             );
           })}
