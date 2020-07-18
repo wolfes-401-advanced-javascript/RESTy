@@ -5,6 +5,7 @@ import './scss/app.scss';
 import Header from './components/header.js';
 import Footer from './components/footer.js';
 import Form from './components/form.js';
+import List from './components/pokemonList/list.js'
 
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
       words: 'Default state',
       url: 'Input url',
       method: '',
+      response: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMethod = this.handleMethod.bind(this);
@@ -26,11 +28,16 @@ class App extends React.Component {
     this.setState({ url });
   }
 
-  handleSubmit(event) {
+  handleSubmit = async (event) => {
+    console.log('****THIS****');
     event.preventDefault();
-    console.log(event.target.value);
-    this.setState({url: event.target.value});
-  }
+    let data = await fetch(this.state.url);
+    let json = await data.json();
+    console.log('this is json', json);
+    
+    this.setState({ response: json });
+     
+    }
 
   handleMethod(method) {
     console.log(method);
@@ -38,8 +45,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-
+    
     return (
       <div>
         <Header
@@ -48,12 +54,19 @@ class App extends React.Component {
         />
         
         <Form
+          onSubmit={this.handleSubmit}
           handleMethod={this.handleMethod}
           method={this.state.method}
           handleChange={this.handleStateWords}
           url={this.state.url}
+          prompt={'Go!'}
         />
-        <Footer/>
+         <>
+        <List  
+          response={this.state.response}
+        />
+        </>
+        <Footer />
       </div>
     );
   }
