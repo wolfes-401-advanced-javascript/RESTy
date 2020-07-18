@@ -8,7 +8,7 @@ class Form extends React.Component {
   render() {
     return (
       <section>
-        <form id="form" onSubmit={this.props.handleSubmit}>
+        <form id="form" onSubmit={this.props.onSubmit}>
           <label>Enter your URL:</label>
           <input type="text" id="url" value={this.props.value} onChange={this.props.handleChange}></input>
           <button>{this.props.prompt}</button>

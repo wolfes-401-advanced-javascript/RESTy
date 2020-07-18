@@ -29,10 +29,11 @@ class App extends React.Component {
   }
 
   handleSubmit = async (event) => {
+    console.log('****THIS****');
     event.preventDefault();
     let data = await fetch(this.state.url);
     let json = await data.json();
-    console.log(json);
+    console.log('this is json', json);
     
     this.setState({ response: json });
      

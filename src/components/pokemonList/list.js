@@ -1,7 +1,12 @@
 import React from 'react';
+import prettyPrintJSON from 'pretty-print-json';
 
 
 const List = (props) => {
+  console.log(props);
+
+  let pretty = prettyPrintJSON.toHtml(props.response);
+  console.log(pretty);
 
   if (!Object.keys(props.response).length) {
 
@@ -12,15 +17,8 @@ const List = (props) => {
 
     return (
       <div>
-        <ul>
-          {Object.keys(props.response).map((response, idx) => {
-            return (
-              <li key={idx}>
-                <a href={props.response[response]}>{response}</a>
-              </li>
-            );
-          })}
-        </ul>
+        <pre dangerouslySetInnerHTML={{ __html: pretty }} />
+        
       </div>
     );
   }
